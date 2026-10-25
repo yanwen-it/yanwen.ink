@@ -61,12 +61,29 @@
     line-height: 1;
     flex: none;
   }
+  .lang-btn {
+    font-family: inherit;
+    font-size: 13px;
+    letter-spacing: .08em;
+    color: var(--ink-soft);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: border-color .2s, color .2s;
+  }
+  .lang-btn:hover {
+    border-color: var(--cinnabar);
+    color: var(--cinnabar);
+  }
   .topbar a {
     color: var(--ink-soft);
     text-decoration: none;
     transition: color .2s;
   }
   .topbar a:hover { color: var(--cinnabar); }
+  .topbar .right { display: flex; align-items: center; gap: 16px; }
 
   /* ===== Hero ===== */
   .hero {
@@ -93,20 +110,19 @@
   .hero h1 {
     font-family: "Noto Serif SC", "Songti SC", serif;
     font-weight: 900;
-    font-size: clamp(34px, 7vw, 58px);
-    letter-spacing: .06em;
-    line-height: 1.25;
+    font-size: clamp(30px, 6.4vw, 54px);
+    letter-spacing: .04em;
+    line-height: 1.3;
   }
   .hero .en {
     margin-top: 14px;
     color: var(--ink-soft);
     font-size: 15px;
-    letter-spacing: .22em;
-    text-transform: lowercase;
+    letter-spacing: .18em;
   }
   .hero .intro {
     margin: 36px auto 0;
-    max-width: 520px;
+    max-width: 560px;
     font-size: 16px;
     color: var(--ink-soft);
   }
@@ -173,23 +189,26 @@
 
 <header>
   <div class="wrap topbar">
-    <div class="word"><span class="seal-sm">砚</span>砚闻文化</div>
-    <a href="mailto:contact@yanwen.ink">contact@yanwen.ink</a>
+    <div class="word"><span class="seal-sm">砚</span><span data-i18n="brand">砚闻文化</span></div>
+    <div class="right">
+      <a href="mailto:contact@yanwen.ink">contact@yanwen.ink</a>
+      <button class="lang-btn" id="langToggle" type="button" aria-label="Switch language">EN</button>
+    </div>
   </div>
 </header>
 
 <main>
   <section class="hero wrap">
     <div class="seal-lg" aria-hidden="true"><span>砚</span></div>
-    <h1>砚闻文化咨询有限公司</h1>
-    <div class="en">Yanwen Culture Consulting · yanwen.ink</div>
-    <p class="intro">以审慎与专业的态度，服务文化领域的咨询与交流。<b>欢迎通过邮件与我们联系。</b></p>
+    <h1 data-i18n="company">砚闻文化咨询有限公司</h1>
+    <div class="en" data-i18n="tagline">砚闻文化咨询 · yanwen.ink</div>
+    <p class="intro" data-i18n="intro">以审慎与专业的态度，服务文化领域的咨询与交流。<b>欢迎通过邮件与我们联系。</b></p>
   </section>
 
   <section class="contact wrap">
-    <div class="note">联系我们</div>
+    <div class="note" data-i18n="contact">联系我们</div>
     <a class="mail-card" href="mailto:contact@yanwen.ink">
-      <span class="label">邮箱</span>
+      <span class="label" data-i18n="emailLabel">邮箱</span>
       <span class="addr">contact@yanwen.ink</span>
       <span class="arrow" aria-hidden="true">→</span>
     </a>
@@ -198,9 +217,84 @@
 
 <footer>
   <div class="wrap">
-    © 2026 砚闻文化咨询有限公司 · <span class="domain">yanwen.ink</span>
+    <span data-i18n="footer">© 2026 砚闻文化咨询有限公司</span> · <span class="domain">yanwen.ink</span>
   </div>
 </footer>
+
+<script>
+/* Bilingual i18n for the static homepage. */
+(function () {
+  "use strict";
+
+  var I18N = {
+    zh: {
+      brand: "\u781a\u95fb\u6587\u5316",
+      company: "\u781a\u95fb\u6587\u5316\u54a8\u8be2\u6709\u9650\u516c\u53f8",
+      tagline: "\u781a\u95fb\u6587\u5316\u54a8\u8be2 \u00b7 yanwen.ink",
+      intro: "\u4ee5\u5ba1\u614e\u4e0e\u4e13\u4e1a\u7684\u6001\u5ea6\uff0c\u670d\u52a1\u6587\u5316\u9886\u57df\u7684\u54a8\u8be2\u4e0e\u4ea4\u6d41\u3002<b>\u6b22\u8fce\u901a\u8fc7\u90ae\u4ef6\u4e0e\u6211\u4eec\u8054\u7cfb\u3002</b>",
+      contact: "\u8054\u7cfb\u6211\u4eec",
+      emailLabel: "\u90ae\u7bb1",
+      footer: "\u00a9 2026 \u781a\u95fb\u6587\u5316\u54a8\u8be2\u6709\u9650\u516c\u53f8",
+      toggle: "EN"
+    },
+    en: {
+      brand: "Yanwen Culture",
+      company: "Yanwen Culture Consulting Co., Ltd.",
+      tagline: "Yanwen Culture Consulting \u00b7 yanwen.ink",
+      intro: "Dedicated to consultation and exchange in the cultural field with prudence and professionalism. <b>We welcome your inquiry via email.</b>",
+      contact: "Contact Us",
+      emailLabel: "Email",
+      footer: "\u00a9 2026 Yanwen Culture Consulting Co., Ltd.",
+      toggle: "\u4e2d\u6587"
+    }
+  };
+
+  var STORAGE_KEY = "yanwen-lang";
+
+  function applyLang(lang) {
+    var dict = I18N[lang] || I18N.zh;
+    var nodes = document.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < nodes.length; i++) {
+      var key = nodes[i].getAttribute("data-i18n");
+      if (dict[key] !== undefined) {
+        nodes[i].innerHTML = dict[key];
+      }
+    }
+    document.documentElement.lang = lang === "en" ? "en" : "zh-CN";
+    document.title = lang === "en"
+      ? "Yanwen Culture Consulting Co., Ltd. \u00b7 yanwen.ink"
+      : "\u781a\u95fb\u6587\u5316\u54a8\u8be2\u6709\u9650\u516c\u53f8 \u00b7 yanwen.ink";
+  }
+
+  function detectLang() {
+    var hash = window.location.hash;
+    if (hash.indexOf("lang=") === 0) {
+      return hash.slice(5);
+    }
+    var saved = null;
+    try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) { saved = null; }
+    if (saved === "zh" || saved === "en") {
+      return saved;
+    }
+    return (navigator.language || "zh").toLowerCase().indexOf("zh") === 0 ? "zh" : "en";
+  }
+
+  var current = detectLang();
+  applyLang(current);
+
+  var toggleBtn = document.getElementById("langToggle");
+  toggleBtn.textContent = I18N[current].toggle;
+  toggleBtn.addEventListener("click", function () {
+    current = current === "zh" ? "en" : "zh";
+    applyLang(current);
+    toggleBtn.textContent = I18N[current].toggle;
+    try { localStorage.setItem(STORAGE_KEY, current); } catch (e) { /* storage may be unavailable */ }
+    if (history.replaceState) {
+      history.replaceState(null, "", "#lang=" + current);
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
