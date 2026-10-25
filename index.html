@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>砚闻文化咨询有限公司 · yanwen.ink</title>
-<meta name="description" content="砚闻文化咨询有限公司（Yanwen Culture Consulting）官方网站。">
+<title>Yanwen Culture Consulting Co., Ltd. · yanwen.ink</title>
+<meta name="description" content="Official website of Yanwen Culture Consulting Co., Ltd. (Yanwen Culture Consulting).">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%239e3b34'/%3E%3Ctext x='32' y='44' font-size='36' font-family='serif' font-weight='700' fill='%23f8f6f2' text-anchor='middle'%3E%E7%A0%9A%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://miaoda.feishu.cn">
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@300;400;500&display=swap">
@@ -189,10 +189,10 @@
 
 <header>
   <div class="wrap topbar">
-    <div class="word"><span class="seal-sm">砚</span><span data-i18n="brand">砚闻文化</span></div>
+    <div class="word"><span class="seal-sm">砚</span><span data-i18n="brand">Yanwen Culture</span></div>
     <div class="right">
       <a href="mailto:contact@yanwen.ink">contact@yanwen.ink</a>
-      <button class="lang-btn" id="langToggle" type="button" aria-label="Switch language">EN</button>
+      <button class="lang-btn" id="langToggle" type="button" aria-label="Switch language">中文</button>
     </div>
   </div>
 </header>
@@ -200,15 +200,15 @@
 <main>
   <section class="hero wrap">
     <div class="seal-lg" aria-hidden="true"><span>砚</span></div>
-    <h1 data-i18n="company">砚闻文化咨询有限公司</h1>
-    <div class="en" data-i18n="tagline">砚闻文化咨询 · yanwen.ink</div>
-    <p class="intro" data-i18n="intro">以审慎与专业的态度，服务文化领域的咨询与交流。<b>欢迎通过邮件与我们联系。</b></p>
+    <h1 data-i18n="company">Yanwen Culture Consulting Co., Ltd.</h1>
+    <div class="en" data-i18n="tagline">Yanwen Culture Consulting · yanwen.ink</div>
+    <p class="intro" data-i18n="intro">Dedicated to consultation and exchange in the cultural field with prudence and professionalism. <b>We welcome your inquiry via email.</b></p>
   </section>
 
   <section class="contact wrap">
-    <div class="note" data-i18n="contact">联系我们</div>
+    <div class="note" data-i18n="contact">Contact Us</div>
     <a class="mail-card" href="mailto:contact@yanwen.ink">
-      <span class="label" data-i18n="emailLabel">邮箱</span>
+      <span class="label" data-i18n="emailLabel">Email</span>
       <span class="addr">contact@yanwen.ink</span>
       <span class="arrow" aria-hidden="true">→</span>
     </a>
@@ -217,7 +217,7 @@
 
 <footer>
   <div class="wrap">
-    <span data-i18n="footer">© 2026 砚闻文化咨询有限公司</span> · <span class="domain">yanwen.ink</span>
+    <span data-i18n="footer">© 2026 Yanwen Culture Consulting Co., Ltd.</span> · <span class="domain">yanwen.ink</span>
   </div>
 </footer>
 
@@ -276,7 +276,8 @@
     if (saved === "zh" || saved === "en") {
       return saved;
     }
-    return (navigator.language || "zh").toLowerCase().indexOf("zh") === 0 ? "zh" : "en";
+    /* Global service: default to English on first visit. */
+    return "en";
   }
 
   var current = detectLang();
