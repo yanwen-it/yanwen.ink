@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>砚闻文化咨询有限公司 · yanwen.ink</title>
+<meta name="description" content="砚闻文化咨询有限公司（Yanwen Culture Consulting）官方网站。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%239e3b34'/%3E%3Ctext x='32' y='44' font-size='36' font-family='serif' font-weight='700' fill='%23f8f6f2' text-anchor='middle'%3E%E7%A0%9A%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@300;400;500&display=swap">
+<style>
+  :root {
+    --paper: #f8f6f2;
+    --ink: #21262e;
+    --ink-soft: #4a4f57;
+    --cinnabar: #9e3b34;
+    --stone: #3d5a63;
+    --line: rgba(33, 38, 46, .12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Noto Sans SC", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { width: 100%; max-width: 960px; margin: 0 auto; padding: 0 22px; }
+
+  /* ===== 顶部条 ===== */
+  header {
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+    font-size: 14px;
+    letter-spacing: .04em;
+  }
+  .topbar .word {
+    font-family: "Noto Serif SC", "Songti SC", serif;
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .seal-sm {
+    width: 26px; height: 26px;
+    background: var(--cinnabar);
+    color: var(--paper);
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    line-height: 1;
+    flex: none;
+  }
+  .topbar a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .topbar a:hover { color: var(--cinnabar); }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding: 96px 0 72px;
+    text-align: center;
+  }
+  .seal-lg {
+    width: 76px; height: 76px;
+    background: var(--cinnabar);
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 34px;
+    box-shadow: 0 10px 28px rgba(158, 59, 52, .22);
+  }
+  .seal-lg span {
+    color: var(--paper);
+    font-family: "Noto Serif SC", "Songti SC", serif;
+    font-weight: 900;
+    font-size: 44px;
+    line-height: 1;
+  }
+  .hero h1 {
+    font-family: "Noto Serif SC", "Songti SC", serif;
+    font-weight: 900;
+    font-size: clamp(34px, 7vw, 58px);
+    letter-spacing: .06em;
+    line-height: 1.25;
+  }
+  .hero .en {
+    margin-top: 14px;
+    color: var(--ink-soft);
+    font-size: 15px;
+    letter-spacing: .22em;
+    text-transform: lowercase;
+  }
+  .hero .intro {
+    margin: 36px auto 0;
+    max-width: 520px;
+    font-size: 16px;
+    color: var(--ink-soft);
+  }
+  .hero .intro b { font-weight: 500; color: var(--ink); }
+
+  /* ===== 联系 ===== */
+  .contact {
+    padding: 56px 0 88px;
+    text-align: center;
+  }
+  .contact .note {
+    font-size: 14px;
+    color: var(--ink-soft);
+    letter-spacing: .14em;
+    margin-bottom: 26px;
+  }
+  .mail-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 34px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fffdfa;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color .2s, transform .2s;
+  }
+  .mail-card:hover {
+    border-color: var(--cinnabar);
+    transform: translateY(-2px);
+  }
+  .mail-card .label {
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: .1em;
+  }
+  .mail-card .addr {
+    font-family: "Noto Serif SC", "Songti SC", serif;
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--cinnabar);
+  }
+  .mail-card .arrow { color: var(--ink-soft); font-size: 18px; }
+
+  /* ===== 页脚 ===== */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 26px 0 34px;
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 13px;
+    letter-spacing: .06em;
+  }
+  footer .domain { color: var(--stone); font-weight: 500; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .mail-card { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap topbar">
+    <div class="word"><span class="seal-sm">砚</span>砚闻文化</div>
+    <a href="mailto:hr@yanwen.ink">hr@yanwen.ink</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <div class="seal-lg" aria-hidden="true"><span>砚</span></div>
+    <h1>砚闻文化咨询有限公司</h1>
+    <div class="en">Yanwen Culture Consulting · yanwen.ink</div>
+    <p class="intro">以审慎与专业的态度，服务文化领域的咨询与交流。<b>欢迎通过邮件与我们联系。</b></p>
+  </section>
+
+  <section class="contact wrap">
+    <div class="note">联系我们</div>
+    <a class="mail-card" href="mailto:hr@yanwen.ink">
+      <span class="label">邮箱</span>
+      <span class="addr">hr@yanwen.ink</span>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    © 2026 砚闻文化咨询有限公司 · <span class="domain">yanwen.ink</span>
+  </div>
+</footer>
+
+</body>
+</html>
